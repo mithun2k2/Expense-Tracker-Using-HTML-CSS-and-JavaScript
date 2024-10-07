@@ -25,8 +25,17 @@ expenseForm.addEventListener('submit', function(event) {
 });
 
 function addTransaction(description, amount, category) {
-    const transactionRow = document.createElement('tr');
+    const transaction = {
+        description: description,
+        amount: amount,
+        category: category
+    }
 
+    let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    transactions.push(transaction);
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+    
+    const transactionRow = document.createElement('tr');
     transactionRow.innerHTML = `
         <td>${description}</td>
         <td>${category}</td>
