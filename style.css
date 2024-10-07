@@ -134,3 +134,11 @@ td button:hover {
   .hidden {
     display: none;
   }
+
+  .positive {
+    color: #28a745; /* Green for positive balance */
+  }
+  
+  .negative {
+    color: #dc3545; /* Red for negative balance */
+  }
