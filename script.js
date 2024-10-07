@@ -34,6 +34,18 @@ function addTransaction(description, amount, category) {
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
     transactions.push(transaction);
     localStorage.setItem('transactions', JSON.stringify(transactions));
+
+    function removeTransaction(transactionToRemove) {
+        let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    
+        transactions = transactions.filter(function(transaction) {
+            return !(transaction.description === transactionToRemove.description &&
+                     transaction.amount === transactionToRemove.amount &&
+                     transaction.category === transactionToRemove.category);
+        });
+    
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+    }
     
     const transactionRow = document.createElement('tr');
     transactionRow.innerHTML = `
