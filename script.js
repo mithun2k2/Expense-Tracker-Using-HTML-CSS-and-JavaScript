@@ -79,3 +79,8 @@ function showNotification(message) {
         notification.classList.add('hidden');
     }, 2000); // Notification will disappear after 2 seconds
 }
+
+addTransaction(description, amount, category);
+showNotification('Transaction added successfully!');
+updateSummary();
+clearInputs();
