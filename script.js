@@ -61,7 +61,17 @@ function updateSummary() {
 
     totalExpense.textContent = totalExpenses.toFixed(2);
     totalIncome.textContent = totalIncomes.toFixed(2);
-    balance.textContent = (totalIncomes - totalExpenses).toFixed(2);
+    const currentBalance = totalIncomes - totalExpenses;
+    balance.textContent = currentBalance.toFixed(2);
+}
+
+// Apply positive/negative class
+if(currentBalance>=0){
+    balance.classList.remove('negative');
+    balance.classList.add('positive');
+} else {
+    balance.classList.remove('positive');
+    balance.classList.add('negative'); 
 }
 
 function clearInputs() {
@@ -78,9 +88,11 @@ function showNotification(message) {
     setTimeout(function() {
         notification.classList.add('hidden');
     }, 2000); // Notification will disappear after 2 seconds
-}
+
 
 addTransaction(description, amount, category);
 showNotification('Transaction added successfully!');
 updateSummary();
 clearInputs();
+
+}
