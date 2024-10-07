@@ -46,6 +46,18 @@ function addTransaction(description, amount, category) {
     
         localStorage.setItem('transactions', JSON.stringify(transactions));
     }
+
+    function loadTransactions() {
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    
+        transactions.forEach(function(transaction) {
+            addTransaction(transaction.description, transaction.amount, transaction.category);
+        });
+    
+        updateSummary();
+    }
+    
+    window.addEventListener('load', loadTransactions);
     
     const transactionRow = document.createElement('tr');
     transactionRow.innerHTML = `
@@ -110,10 +122,14 @@ function showNotification(message) {
         notification.classList.add('hidden');
     }, 2000); // Notification will disappear after 2 seconds
 
+}
+
+window.addEventListener('load', function() {
+    expenseInput.focus();
+});
 
 addTransaction(description, amount, category);
 showNotification('Transaction added successfully!');
 updateSummary();
 clearInputs();
 
-}
